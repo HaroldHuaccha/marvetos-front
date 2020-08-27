@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-08-2020 a las 21:32:41
+-- Tiempo de generación: 27-08-2020 a las 22:18:55
 -- Versión del servidor: 10.3.16-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -59,6 +59,13 @@ CREATE TABLE `conductor` (
   `telefono` int(11) NOT NULL,
   `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `conductor`
+--
+
+INSERT INTO `conductor` (`idConductor`, `Nombres`, `Apellidos`, `DNI`, `telefono`, `email`) VALUES
+(3, 'Luz', 'Torres Paz', '62191212', 986141854, 'luz@unmsm.edu.pe');
 
 -- --------------------------------------------------------
 
@@ -450,7 +457,7 @@ CREATE TABLE `user` (
   `pass` varchar(8) NOT NULL,
   `RUC` varchar(11) DEFAULT NULL,
   `DNI` varchar(8) DEFAULT NULL,
-  `Apellidos` varchar(20) NOT NULL,
+  `Apellidos` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   `Nombres` varchar(20) NOT NULL,
   `idRol` int(11) NOT NULL,
   `NombreEmpresa` varchar(100) DEFAULT NULL,
@@ -463,7 +470,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`idUser`, `email`, `pass`, `RUC`, `DNI`, `Apellidos`, `Nombres`, `idRol`, `NombreEmpresa`, `telefono`) VALUES
 (1, 'harold.huaccha@unmsm.edu.pe', '12345', '', '41241412', 'Huaccha Tene', 'Harold Andre', 2, '', 978803091),
-(2, 'erik.muñico@unmsm.com', '12345', NULL, '23412124', 'Muñico Galván', 'Erik Antony', 3, NULL, 978123412),
+(2, 'erik.muñico@unmsm.edu.pe', '12345', NULL, '23412124', 'Munico Galvan', 'Erik Antony', 3, NULL, 978123412),
 (3, 'luz@unmsm.edu.pe', '12345', NULL, '62191212', 'Torres Paz', 'Luz', 4, NULL, 986141854);
 
 -- --------------------------------------------------------
@@ -480,6 +487,13 @@ CREATE TABLE `vendedor` (
   `telefono` int(11) NOT NULL,
   `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `vendedor`
+--
+
+INSERT INTO `vendedor` (`idVendedor`, `Nombres`, `Apellidos`, `DNI`, `telefono`, `email`) VALUES
+(2, 'Erik Antony', 'Munico Galvan', '23412124', 978123412, 'erik.muñico@unmsm.com');
 
 --
 -- Índices para tablas volcadas

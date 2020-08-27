@@ -14,7 +14,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
   styleUrls: ['./editarproductos.component.css']
 })
 export class EditarproductosComponent implements OnInit {
-  @ViewChild('closebutton') closebutton;
+  @ViewChild('closebutton', {static: true}) closebutton;
   products: Products = {
     idProducto : 0,
    // idCategoria : 0,
