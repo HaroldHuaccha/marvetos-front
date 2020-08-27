@@ -1,0 +1,245 @@
+
+<!-- breadcrumb start-->
+
+
+  <div class="alert alert-primary" style="background-color: #1a3742;" role="alert">
+    <h3 style="text-align: center; font: oblique bold 120% cursive; color:#FFFFFF; font-size:30px;">Detalle del Conductor a Entregar los Pedidos
+    </h3>
+  </div>
+  <!-- breadcrumb start-->
+  
+  <!--================Cart Area =================-->
+  <section class="cart_area padding-space ">
+    <div class="container">
+      <div class="cart_inner">
+        <div class="table-responsive-xl">
+  
+          <table class="table  table-hover">
+            <thead class="table table-primary">
+              <tr>
+  
+                <th scope="col">N°Orden</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Conductor</th>
+                <th scope="col">Vendedor</th>
+                <th scope="col">Fecha Orden</th>
+                <th scope="col">Fecha Entrega</th>
+                <th scope="col">Comentario Cliente</th>
+                <th scope="col">Distrito</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Metodo de Pago</th>
+                <th scope="col">PrecioTotal</th>
+                <th scope="col">Comentario Conductor</th>
+                <th scope="col">Ver Detalle</th>
+  
+              </tr>
+  
+  
+              
+            </thead>
+            <tbody *ngFor="let orden of orden | paginate: { itemsPerPage: 4, currentPage: paginaActual }" >
+  
+              <tr>
+                <td>
+                      <p>M0{{orden.idOrden}}</p>
+                </td>
+                <td>
+                  <p>{{orden.nombreEstado}}</p>
+                </td>
+                <td>
+                 
+                    <p>{{orden.Cliente}}</p>
+                
+              </td>
+              <td>
+                 
+                <p>{{orden.Conductor}}</p>
+            
+          </td>
+          <td>
+                 
+            <p>{{orden.Vendedor}}</p>
+        
+          </td>
+          <td>
+            <p>{{orden.fechaOrden | date:'dd-MM-yyyy HH:mm:ss'}}
+            </p>
+        </td>
+
+                <td>
+                    <p>{{orden.fechaEntrega | date:'dd-MM-yyyy HH:mm:ss'}}
+                    </p>
+                </td>
+
+                <td>
+                  <p>{{orden.Comentario}}</p>
+                </td>
+
+                <td>
+                    <p>{{orden.lugar}} </p>
+                  </td>
+
+                  <td>
+                    <p>{{orden.Direccion}} </p>
+                  </td>
+                  
+                  <td>
+                    <p>{{orden.metodoPago}} </p>
+                  </td>
+                  <td>
+                    <p>S/ {{orden.PrecioTotal}} </p>
+                  </td>
+
+                  <td>
+                    <p>{{orden.comentarioConductor}} </p>
+                  </td>
+                <td>
+                     
+                
+                  
+                  <button type="button" class="btn btn-warning" (click)="buscarDetalle(orden.idOrden)" data-toggle="modal" data-target="#exampleModalCenter"  >
+                    <i class="fas fa-info"></i>
+                  </button>
+                  <br>
+                  <br>
+                  <button type="button" class="btn btn-success" (click)="editEstado(orden.idOrden)" data-toggle="modal" data-target="#exampleModalCenter1"  >
+                    <i class="fas fa-redo"></i>
+                  </button>
+
+               
+                </td>
+              </tr>
+
+              
+  
+  
+            </tbody>
+          
+          </table>
+          <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
+        
+        </div>
+      </div>
+    </div>
+  
+  </section>
+  <!--================End Cart Area =================-->
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+
+  <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title center" id="exampleModalLongTitle">Detalle Carrito</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+        <thead class="thead-dark" >
+          <tr>
+
+            <th scope="col">Producto</th>
+            <th scope="col">Cantidad</th>
+           
+
+          </tr>
+
+         
+
+        </thead>
+
+        <tbody *ngFor="let detalle of detalleCarrito">
+  
+          <tr>
+           
+              <td>
+                <p>{{detalle.Productos}} </p>
+              </td>
+              <td>
+                <p>{{detalle.cantProducto}} {{detalle.unidades}}</p>
+              </td>
+              <td>
+                <p>{{detalle.nota}} </p>
+              </td>
+           
+          </tr>
+
+          
+
+
+        </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Listo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <script>
+  function rfesh(){
+    console.log("actualizando");
+  }
+</script> -->
+
+
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+
+  <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Estado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Estado</label>
+            <select (change)="onclicEdit($event.target.value)" class="form-control" id="exampleFormControlSelect1 ">
+              <option>Elige un estado</option>
+             <!--  <option>Pendiente</option>
+              <option>Confirmado</option> -->
+              <option>En camino</option>
+              <option>Entregado</option>
+            <!--   <option>Promovido</option> -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Comentario del Conductor:</label>
+            <input  type="text" class="form-control" id="recipient-name" (change)="onclicEditComentario($event.target.value)">
+          </div>
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        <button [routerLink]="['/detalleC']" type="button" (click)="updateEstado()" class="btn btn-primary" data-dismiss="modal">Listo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+   $("#exampleModalCenter1").on('hide', function () {
+           window.location.reload();
+       })
+       
+</script>

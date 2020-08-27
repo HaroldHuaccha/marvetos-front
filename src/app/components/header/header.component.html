@@ -1,0 +1,190 @@
+<!--Versión 1.0 completa-->
+<header class="main_menu home_menu" >
+    <div class="container-fluid">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-11">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" routerLink="/">
+                        <img src="assets/img/marvetos.png" alt="logo" width="100" height="60" />
+                    </a>
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="menu_icon"><i class="fas fa-bars"></i></span>
+                    </button> -->
+                    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="menu_icon"><i class="fas fa-bars"></i></span>
+                      </button>
+                    
+
+                    <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+                        <ul class="navbar-nav">
+                            <ng-container [ngSwitch]=idRol>
+                                <!-- VENDEDOR -->
+                                <ng-container *ngSwitchCase="'3'">
+
+                                    <li>
+                                        <a class="nav-link" routerLink="/orden/vendedor">Vista del vendedor</a>
+                                    </li>
+
+                                </ng-container>
+                                <!--ADMINISTRADOR-->
+                                <ng-container *ngSwitchCase="'5'">
+
+                                    <li>
+                                        <a class="nav-link" routerLink="/orden/administrador">Pedidos de los Clientes</a>
+                                    </li>
+
+                                </ng-container>
+                                <ng-container *ngSwitchCase="'3'">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" (click)="isCollapsed = true" routerLink="/ingresarProducto">Registro producto</a>
+                                    </li>
+
+                                </ng-container>
+                                <ng-container *ngSwitchCase="'3'">
+
+                                    <li>
+                                        <a class="nav-link" routerLink="/productos/editar">Editar productos</a>
+                                    </li>
+
+                                </ng-container>
+                                
+                                <!-- CONDUCTOR  -->
+                                <ng-container *ngSwitchCase="'4'">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" routerLink="/detalleC">DetallesConductor</a>
+                                    </li>
+
+                                </ng-container>
+                                <!-- EMPRESA :1, PERSONA NATURAL:2 ! -->
+                                <ng-container *ngSwitchDefault>
+                                    <li class="nav-item view-name-mobile">
+                                        <a class="nav-link name-mobile" *ngIf="login">Hola, {{nombre}}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" (click)="isCollapsed = true" routerLink="">Inicio</a>
+                                    </li>
+
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link " role="button" (click)="isCollapsed = true" routerLink="/productos" aria-expanded="false">
+                                            Tienda
+                                        </a>
+                                        <!-- <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+                                            <a class="dropdown-item" (click)="isCollapsed = true" routerLink="/productos" >
+                                                Productos</a>
+                                           
+                                        </div> -->
+                                        
+                                    </li>
+                                    <li class="nav-item dropdown" (mouseover)="isCollapsed2=false" (mouseout)="isCollapsed2=true" >
+                                        <a class="nav-link dropdown-toggle" id="navbarDropdown_2" role="button" (click)="isCollapsed2 = !isCollapsed2"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Conócenos
+                                        </a>
+                                        <div class="dropdown-menu-m" aria-labelledby="navbarDropdown_2"  [ngbCollapse]="isCollapsed2">
+                                            <a class="dropdown-item" (click)="isCollapsed = true" routerLink="/conocenos">
+                                                Conócenos
+                                            </a>
+                                          <!--   <a class="dropdown-item" (click)="isCollapsed = true" routerLink="/orden/usuario" *ngIf=login>Mis pedidos</a> -->
+                                            <a class="dropdown-item" (click)="isCollapsed = true" routerLink="/servicios">Servicios</a>
+
+                                        </div>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" (click)="isCollapsed = true" routerLink="/contacto">Contacto</a>
+                                    </li>
+                                   <!--  <li class="nav-item">
+                                        <a class="nav-link" (click)="isCollapsed = true" routerLink="/conocenos">Conocenos</a>
+                                    </li> -->
+                                    <li class="nav-item">
+                                        <a class="nav-link" (click)="isCollapsed = true" routerLink="/covid">Covid-19</a>
+                                    </li>
+                                   <!--  <li class="nav-item">
+                                        <a class="nav-link" (click)="isCollapsed = true" routerLink="/servicios">Servicios</a>
+                                    </li> -->
+                                    
+                                </ng-container>
+
+                            </ng-container>
+
+                        </ul>
+                    </div>
+                    <!-- Card and search -->
+                    <div class="view-name" style="padding-top: 15px;">
+                        <p *ngIf="login">Hola, {{nombre}}</p>
+                    </div>
+                    <div class="hearer_icon d-flex">
+
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!-- <i class="ti-user"></i> -->
+                                <i class="fas fa-user"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="single_product">
+                                    <a class="dropdown-item" *ngIf="!login" href="ingresar">Inicar Sesion</a>
+                                    <a class="dropdown-item" *ngIf="!login" href="registro">Registrate</a>
+                                    <a class="dropdown-item" *ngIf="login" (click)=cerrarSesion()>Cerrar Sesion</a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" routerLink="/carrito" id="navbarDropdown3" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!-- <i class="ti-bag">{{carrito}}</i> -->
+                                <i class="fas fa-shopping-cart"></i>
+                                <!--                                 <div class="cart__number">0</div>
+ --> </a>
+
+                            <!--                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="single_product">
+                                    <a class="dropdown-item" href="ingresar">Ver carrito</a>
+                                    <a class="dropdown-item" href="registro">Vaciar carrito</a>
+
+                                </div>
+                            </div> -->
+
+
+                        </div>
+
+                        <div class="dropdown" *ngIf=login>
+                            <a class="dropdown-toggle" href="#" id="navbarDropdown4" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                <i class="fas fa-shipping-fast"></i>
+
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                                <div class="single_product">
+                                    <a class="dropdown-item" routerLink="/orden/usuario">Mis pedidos</a>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <a id="search_1"  href="javascript:void(0)"><i class="ti-search"></i></a> -->
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="search_input" id="search_input_box">
+        <div class="container">
+            <form class="d-flex justify-content-between search-inner">
+                <input type="text" class="form-control" id="search_input" placeholder="Buscar producto" />
+                <button type="submit" class="btn"></button>
+                <span class="ti-close" id="close_search" title="Close Search"></span>
+            </form>
+        </div>
+    </div> -->
+
+</header>

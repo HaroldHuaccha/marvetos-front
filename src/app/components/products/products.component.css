@@ -1,0 +1,54 @@
+.btn {
+    background: #0BEE4E;
+    
+      
+      
+      background-image: linear-gradient(to bottom, #1a3742, #1a3742);
+      border: 2px solid #9C9DA0;
+    
+      border-radius: 6px;
+    font-family: Arial;
+      color: #fafafa;
+      font-size: 15px;
+      padding:10px;
+      text-decoration: none;
+    }
+    
+    .btn:hover {
+      background: #0BEE4E;
+      
+     
+      background-image: linear-gradient(to bottom, #1a3742, #1a3742);
+      text-decoration: none;
+    }
+    .category_product_text p {
+      font-size: 17px;
+      font-weight: 600;
+      color: #606060;
+  }
+    @media (max-width: 991px) {
+      
+   
+   img {
+     
+     width: 150px;
+     height: 150px;
+     float: left;
+   }
+  }
+
+.select:hover{
+  background: #a7dbd9;
+  border-radius:5px;
+}
+
+.select2{
+  background: #a7dbd9;
+  border-radius:5px;
+}
+    .category_product_text p {
+    font-size: 15px;
+    font-weight: 600;
+    color: #606060;
+}
+  

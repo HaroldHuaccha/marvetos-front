@@ -1,0 +1,175 @@
+<!-- breadcrumb start-->
+<div class="alert alert-primary" style="background-color: #1a3742;" role="alert">
+  <h3 style="text-align: center; font: oblique bold 120% cursive; color:#FFFFFF; font-size:30px;">Carrito de Compras
+  </h3>
+</div>
+<!-- breadcrumb start-->
+
+<!--================Cart Area ================sdas=-->
+<section class="cart_area ">
+  <div class="container">
+    <div class="cart_inner">
+      <div class="table-responsive">
+
+        <table class="table  table-hover ">
+          <thead class="table-primary">
+            <tr>
+
+              <th scope="col">Producto</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Total</th>
+              <!-- <th scope="col">Nota</th> -->
+              <th scope="col">Eliminar</th>
+            </tr>
+
+
+
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let productoC of cantProducto; index as index">
+
+              <td>
+                <div class="media">
+
+                  <div>
+                    <img src="{{productoC.producto.image}}" width="60" height="60" alt="#">
+                  </div>
+                  <div class="media-body" style="padding: 10px;">
+
+                    <p>{{productoC.producto.producto}} x {{productoC.producto.unidades}}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <h5>S/. {{(productoC.producto.precio).toFixed(2)}}</h5>
+              </td>
+              <td>
+                <div class="product_count">
+                  <a (click)="disminuirCant(productoC.producto.idProducto)">
+                    <span class="input-number-decrement"> <i class="ti-minus" href="#"></i></span>
+                  </a>
+                  <input class="input-number" type="text" value="{{productoC.count}}" min="0" max="10">
+                  <a (click)="AumentarCant(productoC.producto.idProducto)">
+                    <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                  </a>
+                </div>
+              </td>
+              <td>
+                <h5>S/.{{(productoC.producto.precio*productoC.count).toFixed(2)}}</h5>
+              </td>
+              <!-- <td>
+
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Ingrese una nota"
+                  (change)="asignarNota(index, $event)"></textarea>
+              </td> -->
+              <td>
+                <button class="btn btn-danger" (click)="eliminarProducto(productoC.producto.idProducto)"><i
+                    class="fas fa-trash-alt"></i>
+                </button>
+              </td>
+            </tr>
+
+
+            <!-- Subtotal y botones -->
+            <tr class=" bottom_button">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+
+              <td>
+                <div class="cupon_text float-right">
+                  <a class="btn_1 mr-2" (click)="comprarProducto()">Seguir comprando</a>
+                  <a class="btn_1 " (click)="limpiarCarrito()">Limpiar Carrito</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+
+              <td>
+                <h5>Subtotal</h5>
+              </td>
+              <td>
+                <h5>S/.{{(suma).toFixed(2)}}</h5>
+              </td>
+            </tr>
+            
+
+
+
+
+            <tr class="shipping_area">
+              <td></td>
+              <td></td>
+
+              <td>
+
+              </td>
+              <td></td>
+
+              <td>
+                <div class="shipping_box">
+
+                  <h5>Informacion de Entrega</h5>
+                  <br>
+                  <!-- DISTRITOS -->
+                  <select class="shipping_select px-2" (change)="onEditClickDistrito($event.target.value)">
+                    <option value="">Selecciona un distrito</option>
+
+                    <option [value]="x.Distrito" *ngFor="let x of Distritos">{{x.Distrito}}</option>
+                  </select>
+
+                  <h5 *ngIf="CostDelivery" style="padding-bottom: 10px;">Costo Delivery:
+                    S/. {{DeliveryPrecio}}</h5>
+                  <h5 *ngIf="descuentoShow" style="padding-bottom: 10px;">Costo Delivery con descuento:
+                    {{DeliveryPrecio - DescuentoTotal}}</h5>
+
+                  <!-- <h5 *ngIf="CostDelivery" style="padding-bottom: 10px;">Costo Total:
+                    {{resultadoTotal.toFixed(2) }} </h5> -->
+
+                  <!-- FORMA DE PAGO -->
+                  <select class="shipping_select px-2" (change)="onEditClick($event.target.value)">
+                    <option value="">Selecciona una forma de Pago</option>
+                    <option [value]="x.idPago" *ngFor="let x of pago">{{x.name}}
+                    </option>
+                  </select>
+
+                  <input class="post_code" type="text" placeholder="Comentario" [(ngModel)]=comentario />
+
+                  <input class="post_code" type="text" placeholder="Direccion de entrega" [(ngModel)]=direccion />
+
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <h5>Total</h5>
+              </td>
+              <td>
+                <h5>S/.{{resultadoTotal.toFixed(2)}}</h5>
+              </td>
+            </tr>
+
+
+          </tbody>
+
+        </table>
+
+        <div class="checkout_btn_inner float-right">
+
+          <a class="btn_1 " style="margin: 10px" (click)="AgregarOrden()">Comprar Producto</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!--================End Cart Area =================-->
