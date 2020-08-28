@@ -48,7 +48,7 @@ export class EditarproductosComponent implements OnInit {
   get f() { return this.contacto2.controls; }
 
   getProducts() {
-      this.productsService.getProducts().subscribe(
+      this.productsService.getListProducts().subscribe(
         (res) => {
           this.productos = res;
         },

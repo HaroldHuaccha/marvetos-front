@@ -135,6 +135,7 @@
                                 </div>
                             </div>
                         </div>
+                        <ng-container *ngIf="idRol != 3 && idRol != 4">
                         <div class="dropdown">
                             <a class="dropdown-toggle" routerLink="/carrito" id="navbarDropdown3" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -153,22 +154,23 @@
 
 
                         </div>
+                        
+                            <div class="dropdown" *ngIf=login>
+                                <a class="dropdown-toggle" href="#" id="navbarDropdown4" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                        <div class="dropdown" *ngIf=login>
-                            <a class="dropdown-toggle" href="#" id="navbarDropdown4" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-shipping-fast"></i>
 
-                                <i class="fas fa-shipping-fast"></i>
-
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
-                                <div class="single_product">
-                                    <a class="dropdown-item" routerLink="/orden/usuario">Mis pedidos</a>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                                    <div class="single_product">
+                                        <a class="dropdown-item" routerLink="/orden/usuario">Mis pedidos</a>
 
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </ng-container>
 
                         <!-- <a id="search_1"  href="javascript:void(0)"><i class="ti-search"></i></a> -->
                     </div>

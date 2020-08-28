@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ProductsService } from "../../services/products.service";
 import { Products } from "../../model/products";
 import { Categoria } from "../../model/categoria";
-
+import Swal from "sweetalert2";
 //importar categoria datos
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -92,7 +92,12 @@ export class ProductsComponent implements OnInit {
       carrito.push(pr);
       localStorage.setItem("carrito", JSON.stringify(carrito));
     }
-    console.log(carrito.length);
+    Swal.fire(
+      'Producto añadido al carrito',
+      '',
+      'success'
+    )
+    // console.log(carrito.length);
   }
 
   getCantidad() {

@@ -199,15 +199,26 @@ export class IngresoProductoComponent implements OnInit {
   } */
 
   cancelarRegistro(){
-    this.router.navigateByUrl("/productos");
-    Swal.fire({
-      icon: "error",
-      title: "Producto Cancelado",
-      showConfirmButton: false,
-      timer: 2000,
-    }).then((result) => {
+    // this.router.navigateByUrl("/productos");
+    // Swal.fire({
+    //   icon: "error",
+    //   title: "Producto Cancelado",
+    //   showConfirmButton: false,
+    //   timer: 2000,
+    // }).then((result) => {
  
-    });
+    // });
+    this.idUnidad = 0,
+    this.idSubCategoria = 0,
+
+    this.idMarca = 0,
+
+    this.Name = "",
+    this.Image = "",
+    this.Precio= 0,
+    this.Stock= 0,
+    this.Descripcion = ""
+   
   }
 
   onEditClickUnidad(skill: any) {

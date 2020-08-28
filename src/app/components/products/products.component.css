@@ -1,5 +1,5 @@
 .btn {
-    background: #0BEE4E;
+    /* background: #0BEE4E; */
     
       
       
@@ -15,10 +15,11 @@
     }
     
     .btn:hover {
-      background: #0BEE4E;
-      
+      /* background: #0BEE4E; */
+        color: black;
+        background: #9a8f8f;
      
-      background-image: linear-gradient(to bottom, #1a3742, #1a3742);
+      /* background-image: linear-gradient(to bottom, #1a3742, #1a3742); */
       text-decoration: none;
     }
     .category_product_text p {
