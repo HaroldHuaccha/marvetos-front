@@ -1,4 +1,5 @@
 
+
 <div class="alert alert-primary" style="background-color: #1a3742;" role="alert">
     <h3 style="text-align: center; font: oblique bold 120% cursive; color:#FFFFFF; font-size:30px;">Registro de productos
     </h3>
@@ -6,7 +7,7 @@
 
 <section class="padding-space">
     <div class="container">
-        
+      <button class="btn btn-info mb-5" routerLink="/productos/editar" >Editar productos</button>
         <form>
             <div class="form-group">
               <label for="exampleFormControlInput1">Producto</label>
@@ -60,7 +61,7 @@
             
               <div class="form-group">
               <!-- <button class="btn btn-danger" style="margin: 5px;" (click)="cancelarRegistro()" >Limpiar campos</button> -->
-           
+                
               <button class="btn btn-primary" (click)="saveProducto()" >Registrar producto</button>
               </div>
           </form>

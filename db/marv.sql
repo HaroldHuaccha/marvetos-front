@@ -1,41 +1,11 @@
--- phpMyAdmin SQL Dump
--- version 4.9.0.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 27-08-2020 a las 22:18:55
--- Versión del servidor: 10.3.16-MariaDB
--- Versión de PHP: 7.3.6
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `marv`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `categoria`
---
+CREATE DATABASE marv;
+Use marv;
 
 CREATE TABLE `categoria` (
   `idCategoria` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `categoria`
---
 
 INSERT INTO `categoria` (`idCategoria`, `name`) VALUES
 (1, 'Frutas y Verduras'),
@@ -45,11 +15,6 @@ INSERT INTO `categoria` (`idCategoria`, `name`) VALUES
 (5, 'Aguas y Bebidas'),
 (6, 'Limpieza');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `conductor`
---
 
 CREATE TABLE `conductor` (
   `idConductor` int(11) NOT NULL,
@@ -60,18 +25,9 @@ CREATE TABLE `conductor` (
   `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `conductor`
---
-
 INSERT INTO `conductor` (`idConductor`, `Nombres`, `Apellidos`, `DNI`, `telefono`, `email`) VALUES
 (3, 'Luz', 'Torres Paz', '62191212', 986141854, 'luz@unmsm.edu.pe');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `contacto`
---
 
 CREATE TABLE `contacto` (
   `idContacto` int(11) NOT NULL,
@@ -80,26 +36,7 @@ CREATE TABLE `contacto` (
   `mensaje` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `detallecarrito`
---
-
-CREATE TABLE `detallecarrito` (
-  `idDetalleCarrito` int(11) NOT NULL,
-  `idOrden` int(11) NOT NULL,
-  `idProducto` int(11) NOT NULL,
-  `subTotal` decimal(6,2) NOT NULL,
-  `cantProducto` int(11) NOT NULL,
-  `TNote` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `diadescuento`
---
 
 CREATE TABLE `diadescuento` (
   `idDiaDescuento` int(11) NOT NULL,
@@ -107,9 +44,6 @@ CREATE TABLE `diadescuento` (
   `pDescuento` decimal(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `diadescuento`
---
 
 INSERT INTO `diadescuento` (`idDiaDescuento`, `name`, `pDescuento`) VALUES
 (1, 'Lunes', '9.99'),
@@ -198,21 +132,6 @@ INSERT INTO `marca` (`idMarca`, `Name`) VALUES
 -- Estructura de tabla para la tabla `orden`
 --
 
-CREATE TABLE `orden` (
-  `idOrden` int(11) NOT NULL,
-  `idEstado` int(11) NOT NULL,
-  `idUser` int(11) NOT NULL,
-  `fechaOrden` varchar(60) NOT NULL,
-  `fechaEntrega` varchar(60) NOT NULL,
-  `Comentario` varchar(200) NOT NULL,
-  `Direccion` varchar(100) NOT NULL,
-  `PrecioTotal` decimal(6,2) NOT NULL,
-  `idPago` int(11) NOT NULL,
-  `bDescuento` tinyint(1) NOT NULL,
-  `idConductor` int(11) DEFAULT NULL,
-  `idUbicacion` int(11) NOT NULL,
-  `idVendedor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -220,99 +139,6 @@ CREATE TABLE `orden` (
 -- Estructura de tabla para la tabla `producto`
 --
 
-CREATE TABLE `producto` (
-  `idProducto` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `image` varchar(600) NOT NULL,
-  `precio` double(5,2) NOT NULL,
-  `stock` int(11) NOT NULL,
-  `idUnidad` int(11) NOT NULL,
-  `descripcion` varchar(600) NOT NULL,
-  `idMarca` int(11) NOT NULL,
-  `idSubCategoria` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `producto`
---
-
-INSERT INTO `producto` (`idProducto`, `name`, `image`, `precio`, `stock`, `idUnidad`, `descripcion`, `idMarca`, `idSubCategoria`) VALUES
-(1, 'Aceite Beltrán', 'https://as.com/buenavida/imagenes/2017/02/23/portada/1487869214_661327_1487869888_noticia_normal.jpg', 7.00, 54, 1, 'abarrotes', 1, 3),
-(2, 'Manzana de agua', 'https://collecta.com.co/408-large_default/manzana-de-agua.jpg', 3.00, 23, 1, 'asdasdasdasd', 2, 1),
-(3, 'Chuño', 'https://vivanda.vteximg.com.br/arquivos/ids/167486-1000-1000/915750.jpg?v=636137840882270000', 9.00, 16, 1, 'asdasdasdasd', 2, 14),
-(4, 'Brocoli', 'https://mercadoborbon.odoo.com/web/image/product.template/110/image', 5.00, 30, 1, 'asdasdasdasd', 2, 2),
-(5, 'Cebolla Blanca', 'https://www.toponions.com/l/es/library/download/urn:uuid:0a616ef8-a95f-4853-afa2-71cf0c00ee00/witte-ui_01.jpg', 3.50, 55, 1, 'verdura saludable', 2, 2),
-(6, 'Espinaca', 'https://www.gob.mx/cms/uploads/article/main_image/11271/espinass.jpg', 5.50, 20, 1, 'Verdura saludable', 2, 2),
-(7, 'Pimiento', 'https://www.hogarmania.com/archivos/201211/440-nutricion-pimientos-xl-668x400x80xX.jpg', 1.50, 20, 1, 'Pimiento rico', 2, 2),
-(8, 'Maracuya', 'https://assets.cdnelnuevodiario.com/legacy/1321324244_maracuya.jpg', 3.00, 36, 1, 'Rica Fruta Jugosa', 2, 1),
-(10, 'Vainita', 'https://wongfood.vteximg.com.br/arquivos/ids/165297-512-512/Vainita-Wong-1-7329.jpg?v=636415351435000000', 3.50, 50, 1, '', 2, 2),
-(11, 'Maiz Morado', 'https://vivanda.vteximg.com.br/arquivos/ids/165065-1000-1000/60110.jpg?v=636137790322770000', 3.50, 50, 1, '', 2, 2),
-(12, 'Palta Fuerte', 'https://www.normita.com/wp-content/uploads/2020/05/palta-fuerte.jpg', 8.00, 35, 1, '', 2, 1),
-(15, 'Piña Hawaiana', 'https://s3.amazonaws.com/mitiendape/uploads/tienda_004167/tienda_004167_951cf5f56007dc77461390286b496e0cf298099e_producto_medium_80.jpg', 3.00, 50, 1, '', 2, 1),
-(16, 'Naranja de Jugo', 'https://tunuevacompra.com.pe/wp-content/uploads/2020/05/naranja-para-jugo.jpg', 2.80, 50, 1, '', 2, 1),
-(17, 'Garbanzo', 'https://elportugues.com.ar/122/garbanzo-blanco-lechoso-grande-x-1-kg.jpg', 7.60, 50, 1, '', 2, 12),
-(18, 'Frejol Panamito', 'https://smartket.club/image/cache/catalog/menestras/panamito-900x800-800x800.jpg', 10.00, 39, 1, '', 2, 12),
-(19, 'Lenteja BB', 'https://www.gomarket360.com/uploads/product_image/product_429_1.jpg', 7.00, 52, 1, '', 2, 12),
-(20, 'Maicena', 'https://vivanda.vteximg.com.br/arquivos/ids/168290-1000-1000/944661.jpg?v=636137846531800000', 5.20, 50, 1, '', 2, 14),
-(21, 'Pallares', 'https://smartket.club/image/cache/catalog/menestras/pallar-900x800.jpg', 11.00, 50, 1, '', 2, 12),
-(22, 'Arroz', 'https://plazavea.vteximg.com.br/arquivos/ids/192038-450-450/20131000.jpg?v=636439437687600000', 3.40, 45, 1, '', 3, 5),
-(23, 'Avena', 'https://wongfood.vteximg.com.br/arquivos/ids/354332-750-750/Avena-Natural-Santa-Catalina-Bolsa-1-kg-1-19167294.jpg?v=637232724801700000', 10.00, 50, 1, '', 2, 14),
-(24, 'Azucar', 'https://dojiw2m9tvv09.cloudfront.net/23194/product/azucar-blanca-costen-o1kg1838.jpg', 3.40, 49, 1, '', 3, 14),
-(25, 'Fideo Codito', 'https://vivanda.vteximg.com.br/arquivos/ids/172340-1000-1000/20120437.jpg?v=636401341300570000', 3.40, 50, 1, '', 2, 10),
-(26, 'Fideo Tornillo', 'https://plazavea.vteximg.com.br/arquivos/ids/169950-450-450/1042744012.jpg?v=635774861002270000', 3.40, 50, 1, '', 2, 10),
-(27, 'Camote Amarillo', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSBX5upFPLxwhZPjS6T3hczf4-ujIHemunYlw&usqp=CAU', 3.50, 50, 1, '', 2, 37),
-(28, 'Kion', 'https://wongfood.vteximg.com.br/arquivos/ids/212592-750-750/Kion-x-kg-KION-1-146203.jpg?v=636568076067430000', 5.00, 39, 1, '', 2, 2),
-(30, 'Papa Amarilla', 'https://vacasfelices.com/images/productos/verduras/18.jpg', 3.00, 50, 1, '', 2, 37),
-(31, 'Zanahoria', 'https://i2.wp.com/verdedelirio.com/wp-content/uploads/2019/08/zanahoria.jpg?fit=1000%2C1000&ssl=1', 2.50, 50, 1, '', 2, 2),
-(32, 'Papa Blanca', 'https://vivanda.vteximg.com.br/arquivos/ids/176642-1000-1000/990852.jpg?v=636840278539270000', 1.20, 50, 1, '', 2, 37),
-(33, 'Huevos la calera', 'https://www.vacasfelices.com/images/productos/pollo/huevos-1kg.jpg', 7.00, 100, 1, '', 4, 15),
-(34, 'Pollo Entero', 'https://i1.wp.com/layuad.com/wp-content/uploads/2018/10/pollo-1kg.jpg?fit=450%2C450&ssl=1', 13.20, 45, 1, '', 2, 15),
-(35, '2 Pollos Entero', 'https://previews.123rf.com/images/griffin024/griffin0241212/griffin024121200058/16642162-dos-pollos-crudos-en-una-bandeja-de-pl%C3%A1stico-aislados-contra-blancos.jpg', 26.40, 50, 1, '', 2, 15),
-(36, 'Ayudín (520gr)', 'https://chely.pe/wp-content/uploads/2020/04/AYUDIN-LAVAVAJILLA-POTE-X-520-GR.-LIMON.jpg', 6.00, 50, 2, '', 2, 34),
-(37, 'Lejia 1L', 'https://wongfood.vteximg.com.br/arquivos/ids/156123-750-750/Lejia-Sapolio-Original-Botella-1-L-145469.jpg?v=636052223458900000', 6.50, 50, 2, '', 5, 34),
-(38, 'Papel Mega Rollo', 'https://cdn.shopify.com/s/files/1/0097/5808/1105/products/D46A4575-847E-4DDE-9C14-FEAAB7AF2140_1024x.jpg?v=1558242915', 4.00, 50, 2, '', 2, 36),
-(39, 'Papa Rosada', 'https://geant.vteximg.com.br/arquivos/ids/252430-700-700/400957.jpg?v=637281903468170000', 2.50, 50, 1, '', 2, 37),
-(40, 'Olluco Rosado', 'https://www.tuberculos.org/wp-content/uploads/2018/05/olluco-1200x900.jpg', 4.00, 50, 1, '', 2, 37),
-(42, 'Frijol Caballero', 'https://cdn.palbin.com/users/38707/images/frijol-caballero-1592194137.jpg.thumb', 9.00, 50, 1, '', 2, 12),
-(43, 'Papa Seca', 'https://perudelights.com/wp-content/uploads/2013/02/IMG_3527.jpg', 7.50, 50, 1, '', 2, 37),
-(44, 'Quinua', 'https://img.freepik.com/foto-gratis/quinoa-real_1368-9186.jpg?size=626&ext=jpg', 18.00, 50, 1, '', 2, 12),
-(45, 'Soya', 'https://ua.all.biz/img/ua/catalog/14926884.jpg', 4.00, 50, 1, '', 2, 14),
-(46, 'Trigo', 'https://www.elmercadoentucasa.pe/wp-content/uploads/Trigo-Moron-1-kg.jpg', 7.00, 50, 1, '', 2, 12),
-(47, 'Ajo Entero', 'https://s3.amazonaws.com/imagenes-sellers-mercado-ripley/2020/05/20141130/2441.jpg', 18.00, 50, 1, '', 2, 2),
-(49, 'Atado Culantro', 'https://vegetables.odoo.com/web/image/product.template/91/image_1024?unique=733d690', 1.00, 50, 2, '', 2, 2),
-(50, 'Pepino', 'https://www.bidfoodiberia.com/media/catalog/product/cache/1/image/600x/17f82f742ffe127f42dca9de82fb58b1/e/c/ecopep.jpg', 1.00, 50, 2, '', 2, 2),
-(54, 'Atado de Betarraga', 'https://mallkupe.com/wp-content/uploads/2020/05/BETARRAGA-min.jpg', 3.50, 50, 2, '', 2, 2),
-(61, 'Apio', 'https://www.westchesterhispano.net/wp-content/uploads/2018/01/Apio.jpg', 2.00, 50, 2, '', 2, 2),
-(64, 'Atado Perejil', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQLgqL1jEWWZgPJgB_B1Iy7Y3szKRC_AJayyA&usqp=CAU', 1.00, 50, 2, '', 2, 2),
-(66, 'Poro', 'https://dojiw2m9tvv09.cloudfront.net/41548/product/poro5670.jpg', 1.50, 50, 2, '', 2, 2),
-(67, 'Rocoto', 'https://plazavea.vteximg.com.br/arquivos/ids/226521-450-450/135973.jpg?v=636977898030200000', 1.00, 50, 2, '', 2, 2),
-(68, 'Zapallo', 'https://vivanda.vteximg.com.br/arquivos/ids/178024-618-618/20017639.jpg?v=636905875673230000', 3.00, 50, 1, '', 2, 2),
-(69, 'Agua Cielo', 'https://minimarket.pe/wp-content/uploads/2019/12/agua_cielo.jpg', 1.20, 50, 2, '', 6, 24),
-(70, 'Ají Panca', 'https://www.tienda-peruana.com/1497-tm_thickbox_default/panquita-aji-panca-especial-sin-picante-sibarita-sabor-del-peru.jpg', 1.40, 50, 2, '', 2, 8),
-(71, 'Ajinomen', 'https://chely.pe/wp-content/uploads/2019/03/frontal-3623.jpg', 1.40, 50, 2, '', 7, 9),
-(72, 'Anís Herbi', 'https://wongfood.vteximg.com.br/arquivos/ids/258823-750-750/32131-1.jpg?v=636784330415370000', 2.50, 50, 2, '', 8, 14),
-(73, 'Atun Campomar', 'https://plazavea.vteximg.com.br/arquivos/ids/244931-1000-1000/20145074.jpg?v=637052316005530000', 6.50, 50, 2, '', 9, 4),
-(74, 'Kafe Kirma', 'https://plazavea.vteximg.com.br/arquivos/ids/319779-450-450/20110224.jpg?v=637244679292130000', 18.00, 50, 2, '', 10, 14),
-(75, 'Cancha Serrana', 'https://www.tienda-peruana.com/1222-tm_home_default/maiz-cancha-serrana-el-plebeyo-500g.jpg', 8.00, 50, 1, '', 2, 4),
-(76, 'Sobre Colapiz', 'https://www.julcap.com/images/colapiz/colapiz.jpg', 2.00, 50, 2, '', 2, 13),
-(77, 'Sobre Comino', 'https://i2.wp.com/www.comprame.pe/wp-content/uploads/2020/06/Comino-SIBARITA-Sobre-4.05g.png?fit=1152%2C720&ssl=1', 1.00, 50, 2, '', 2, 8),
-(78, 'Doña Gusta Pescado', 'https://d20f60vzbd93dl.cloudfront.net/uploads/tienda_003842/tienda_003842_437e5c887bc470420610fa015cccaf5a049588ca_producto_large.jpg', 1.00, 50, 2, '', 11, 8),
-(79, 'Doña Gusta Carne', 'https://dojiw2m9tvv09.cloudfront.net/23194/product/X_15414507884250230.png?57', 1.00, 50, 2, '', 11, 8),
-(80, 'Doña Gusta Gallina', 'https://swissbrothers.com/799-home_default/dona-gusta-caldo-sabor-a-gallina-en-polvo-7g.jpg', 1.00, 50, 2, '', 11, 8),
-(81, 'Harina Bells', 'https://vivanda.vteximg.com.br/arquivos/ids/164540-1000-1000/22005.jpg?v=636137784434370000', 5.00, 50, 2, '', 12, 13),
-(82, 'Harina sin preparar', 'https://vivanda.vteximg.com.br/arquivos/ids/161032-1000-1000/10443.jpg?v=636137716623600000', 5.00, 50, 1, '', 2, 13),
-(83, 'Leche Condensada', 'https://vivanda.vteximg.com.br/arquivos/ids/163499-1000-1000/20070084.jpg?v=636137753258370000', 5.50, 50, 2, '', 13, 13),
-(84, 'Bolsa Leche Gloria Light', 'https://plazavea.vteximg.com.br/arquivos/ids/264379-450-450/94974.jpg?v=637086775013370000', 4.50, 50, 1, '', 13, 21),
-(85, 'Tarro Leche Gloria Roja', 'https://cdn.joinnus.com/files/2020/05/PO6So8eTu0JoBSP.jpg', 3.80, 50, 1, '', 13, 21),
-(86, 'Mantequilla Glo', 'https://chely.pe/wp-content/uploads/2020/04/Mantequilla-Gloria-pote-x-400-g.png', 9.50, 50, 2, '', 13, 22),
-(87, 'Mayonesa Alacena', 'https://vivanda.vteximg.com.br/arquivos/ids/179150-618-618/994930.jpg?v=637006398811070000', 13.00, 50, 2, '', 14, 8),
-(88, 'Polvo para Hornear', 'https://www.llevateloya.pe/1060-home_default/polvo-hornear-universal-sobre-x-25-gr.jpg', 1.50, 50, 2, '', 2, 13),
-(89, 'Pomarola Molitalia', 'https://cdn.shopify.com/s/files/1/1534/3917/products/130016SalsaPomarolaMolitaliax160gr.png?v=1587346497', 2.20, 50, 2, '', 15, 10),
-(90, 'Sal', 'https://plazavea.vteximg.com.br/arquivos/ids/197525-1000-1000/20130447.jpg?v=636621785258170000', 1.50, 50, 1, '', 2, 8),
-(91, 'Spaghetti', 'https://www.perushop.com.pe/wp-content/uploads/2020/04/fid.don-vittorio-spag.-1kg-12bol_2.jpg', 3.60, 50, 1, '', 2, 10),
-(92, 'Botellita Sillao', 'https://vivanda.vteximg.com.br/arquivos/ids/169979-618-618/20096654.jpg?v=636142105651270000', 2.20, 50, 2, '', 16, 10),
-(93, 'Vainilla Escencial', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTEyFEGle4iZoqNzvytRh9Ln2aHQShxqUepyQ&usqp=CAU', 2.00, 50, 2, '', 2, 13),
-(94, 'Vino tinto queirolo', 'https://oechsle.vteximg.com.br/arquivos/ids/1348289-1000-1000/image-b06128e953694b91aaacb191e7015d99.jpg?v=637122662403430000', 22.00, 50, 2, '', 17, 28);
 
 -- --------------------------------------------------------
 
@@ -494,6 +320,134 @@ CREATE TABLE `vendedor` (
 
 INSERT INTO `vendedor` (`idVendedor`, `Nombres`, `Apellidos`, `DNI`, `telefono`, `email`) VALUES
 (2, 'Erik Antony', 'Munico Galvan', '23412124', 978123412, 'erik.muñico@unmsm.com');
+
+
+
+
+CREATE TABLE `producto` (
+  `idProducto` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `image` varchar(600) NOT NULL,
+  `precio` double(5,2) NOT NULL,
+  `stock` int(11) NOT NULL,
+  `idUnidad` int(11) NOT NULL,
+  `descripcion` varchar(600) NOT NULL,
+  `idMarca` int(11) NOT NULL,
+  `idSubCategoria` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`idProducto`, `name`, `image`, `precio`, `stock`, `idUnidad`, `descripcion`, `idMarca`, `idSubCategoria`) VALUES
+(1, 'Aceite Beltrán', 'https://as.com/buenavida/imagenes/2017/02/23/portada/1487869214_661327_1487869888_noticia_normal.jpg', 7.00, 54, 1, 'abarrotes', 1, 3),
+(2, 'Manzana de agua', 'https://collecta.com.co/408-large_default/manzana-de-agua.jpg', 3.00, 23, 1, 'asdasdasdasd', 2, 1),
+(3, 'Chuño', 'https://vivanda.vteximg.com.br/arquivos/ids/167486-1000-1000/915750.jpg?v=636137840882270000', 9.00, 16, 1, 'asdasdasdasd', 2, 14),
+(4, 'Brocoli', 'https://mercadoborbon.odoo.com/web/image/product.template/110/image', 5.00, 30, 1, 'asdasdasdasd', 2, 2),
+(5, 'Cebolla Blanca', 'https://www.toponions.com/l/es/library/download/urn:uuid:0a616ef8-a95f-4853-afa2-71cf0c00ee00/witte-ui_01.jpg', 3.50, 55, 1, 'verdura saludable', 2, 2),
+(6, 'Espinaca', 'https://www.gob.mx/cms/uploads/article/main_image/11271/espinass.jpg', 5.50, 20, 1, 'Verdura saludable', 2, 2),
+(7, 'Pimiento', 'https://www.hogarmania.com/archivos/201211/440-nutricion-pimientos-xl-668x400x80xX.jpg', 1.50, 20, 1, 'Pimiento rico', 2, 2),
+(8, 'Maracuya', 'https://assets.cdnelnuevodiario.com/legacy/1321324244_maracuya.jpg', 3.00, 36, 1, 'Rica Fruta Jugosa', 2, 1),
+(10, 'Vainita', 'https://wongfood.vteximg.com.br/arquivos/ids/165297-512-512/Vainita-Wong-1-7329.jpg?v=636415351435000000', 3.50, 50, 1, '', 2, 2),
+(11, 'Maiz Morado', 'https://vivanda.vteximg.com.br/arquivos/ids/165065-1000-1000/60110.jpg?v=636137790322770000', 3.50, 50, 1, '', 2, 2),
+(12, 'Palta Fuerte', 'https://www.normita.com/wp-content/uploads/2020/05/palta-fuerte.jpg', 8.00, 35, 1, '', 2, 1),
+(15, 'Piña Hawaiana', 'https://s3.amazonaws.com/mitiendape/uploads/tienda_004167/tienda_004167_951cf5f56007dc77461390286b496e0cf298099e_producto_medium_80.jpg', 3.00, 50, 1, '', 2, 1),
+(16, 'Naranja de Jugo', 'https://tunuevacompra.com.pe/wp-content/uploads/2020/05/naranja-para-jugo.jpg', 2.80, 50, 1, '', 2, 1),
+(17, 'Garbanzo', 'https://elportugues.com.ar/122/garbanzo-blanco-lechoso-grande-x-1-kg.jpg', 7.60, 50, 1, '', 2, 12),
+(18, 'Frejol Panamito', 'https://smartket.club/image/cache/catalog/menestras/panamito-900x800-800x800.jpg', 10.00, 39, 1, '', 2, 12),
+(19, 'Lenteja BB', 'https://www.gomarket360.com/uploads/product_image/product_429_1.jpg', 7.00, 52, 1, '', 2, 12),
+(20, 'Maicena', 'https://vivanda.vteximg.com.br/arquivos/ids/168290-1000-1000/944661.jpg?v=636137846531800000', 5.20, 50, 1, '', 2, 14),
+(21, 'Pallares', 'https://smartket.club/image/cache/catalog/menestras/pallar-900x800.jpg', 11.00, 50, 1, '', 2, 12),
+(22, 'Arroz', 'https://plazavea.vteximg.com.br/arquivos/ids/192038-450-450/20131000.jpg?v=636439437687600000', 3.40, 45, 1, '', 3, 5),
+(23, 'Avena', 'https://wongfood.vteximg.com.br/arquivos/ids/354332-750-750/Avena-Natural-Santa-Catalina-Bolsa-1-kg-1-19167294.jpg?v=637232724801700000', 10.00, 50, 1, '', 2, 14),
+(24, 'Azucar', 'https://dojiw2m9tvv09.cloudfront.net/23194/product/azucar-blanca-costen-o1kg1838.jpg', 3.40, 49, 1, '', 3, 14),
+(25, 'Fideo Codito', 'https://vivanda.vteximg.com.br/arquivos/ids/172340-1000-1000/20120437.jpg?v=636401341300570000', 3.40, 50, 1, '', 2, 10),
+(26, 'Fideo Tornillo', 'https://plazavea.vteximg.com.br/arquivos/ids/169950-450-450/1042744012.jpg?v=635774861002270000', 3.40, 50, 1, '', 2, 10),
+(27, 'Camote Amarillo', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSBX5upFPLxwhZPjS6T3hczf4-ujIHemunYlw&usqp=CAU', 3.50, 50, 1, '', 2, 37),
+(28, 'Kion', 'https://wongfood.vteximg.com.br/arquivos/ids/212592-750-750/Kion-x-kg-KION-1-146203.jpg?v=636568076067430000', 5.00, 39, 1, '', 2, 2),
+(30, 'Papa Amarilla', 'https://vacasfelices.com/images/productos/verduras/18.jpg', 3.00, 50, 1, '', 2, 37),
+(31, 'Zanahoria', 'https://i2.wp.com/verdedelirio.com/wp-content/uploads/2019/08/zanahoria.jpg?fit=1000%2C1000&ssl=1', 2.50, 50, 1, '', 2, 2),
+(32, 'Papa Blanca', 'https://vivanda.vteximg.com.br/arquivos/ids/176642-1000-1000/990852.jpg?v=636840278539270000', 1.20, 50, 1, '', 2, 37),
+(33, 'Huevos la calera', 'https://www.vacasfelices.com/images/productos/pollo/huevos-1kg.jpg', 7.00, 100, 1, '', 4, 15),
+(34, 'Pollo Entero', 'https://i1.wp.com/layuad.com/wp-content/uploads/2018/10/pollo-1kg.jpg?fit=450%2C450&ssl=1', 13.20, 45, 1, '', 2, 15),
+(35, '2 Pollos Entero', 'https://previews.123rf.com/images/griffin024/griffin0241212/griffin024121200058/16642162-dos-pollos-crudos-en-una-bandeja-de-pl%C3%A1stico-aislados-contra-blancos.jpg', 26.40, 50, 1, '', 2, 15),
+(36, 'Ayudín (520gr)', 'https://chely.pe/wp-content/uploads/2020/04/AYUDIN-LAVAVAJILLA-POTE-X-520-GR.-LIMON.jpg', 6.00, 50, 2, '', 2, 34),
+(37, 'Lejia 1L', 'https://wongfood.vteximg.com.br/arquivos/ids/156123-750-750/Lejia-Sapolio-Original-Botella-1-L-145469.jpg?v=636052223458900000', 6.50, 50, 2, '', 5, 34),
+(38, 'Papel Mega Rollo', 'https://cdn.shopify.com/s/files/1/0097/5808/1105/products/D46A4575-847E-4DDE-9C14-FEAAB7AF2140_1024x.jpg?v=1558242915', 4.00, 50, 2, '', 2, 36),
+(39, 'Papa Rosada', 'https://geant.vteximg.com.br/arquivos/ids/252430-700-700/400957.jpg?v=637281903468170000', 2.50, 50, 1, '', 2, 37),
+(40, 'Olluco Rosado', 'https://www.tuberculos.org/wp-content/uploads/2018/05/olluco-1200x900.jpg', 4.00, 50, 1, '', 2, 37),
+(42, 'Frijol Caballero', 'https://cdn.palbin.com/users/38707/images/frijol-caballero-1592194137.jpg.thumb', 9.00, 50, 1, '', 2, 12),
+(43, 'Papa Seca', 'https://perudelights.com/wp-content/uploads/2013/02/IMG_3527.jpg', 7.50, 50, 1, '', 2, 37),
+(44, 'Quinua', 'https://img.freepik.com/foto-gratis/quinoa-real_1368-9186.jpg?size=626&ext=jpg', 18.00, 50, 1, '', 2, 12),
+(45, 'Soya', 'https://ua.all.biz/img/ua/catalog/14926884.jpg', 4.00, 50, 1, '', 2, 14),
+(46, 'Trigo', 'https://www.elmercadoentucasa.pe/wp-content/uploads/Trigo-Moron-1-kg.jpg', 7.00, 50, 1, '', 2, 12),
+(47, 'Ajo Entero', 'https://s3.amazonaws.com/imagenes-sellers-mercado-ripley/2020/05/20141130/2441.jpg', 18.00, 50, 1, '', 2, 2),
+(49, 'Atado Culantro', 'https://vegetables.odoo.com/web/image/product.template/91/image_1024?unique=733d690', 1.00, 50, 2, '', 2, 2),
+(50, 'Pepino', 'https://www.bidfoodiberia.com/media/catalog/product/cache/1/image/600x/17f82f742ffe127f42dca9de82fb58b1/e/c/ecopep.jpg', 1.00, 50, 2, '', 2, 2),
+(54, 'Atado de Betarraga', 'https://mallkupe.com/wp-content/uploads/2020/05/BETARRAGA-min.jpg', 3.50, 50, 2, '', 2, 2),
+(61, 'Apio', 'https://www.westchesterhispano.net/wp-content/uploads/2018/01/Apio.jpg', 2.00, 50, 2, '', 2, 2),
+(64, 'Atado Perejil', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQLgqL1jEWWZgPJgB_B1Iy7Y3szKRC_AJayyA&usqp=CAU', 1.00, 50, 2, '', 2, 2),
+(66, 'Poro', 'https://dojiw2m9tvv09.cloudfront.net/41548/product/poro5670.jpg', 1.50, 50, 2, '', 2, 2),
+(67, 'Rocoto', 'https://plazavea.vteximg.com.br/arquivos/ids/226521-450-450/135973.jpg?v=636977898030200000', 1.00, 50, 2, '', 2, 2),
+(68, 'Zapallo', 'https://vivanda.vteximg.com.br/arquivos/ids/178024-618-618/20017639.jpg?v=636905875673230000', 3.00, 50, 1, '', 2, 2),
+(69, 'Agua Cielo', 'https://minimarket.pe/wp-content/uploads/2019/12/agua_cielo.jpg', 1.20, 50, 2, '', 6, 24),
+(70, 'Ají Panca', 'https://www.tienda-peruana.com/1497-tm_thickbox_default/panquita-aji-panca-especial-sin-picante-sibarita-sabor-del-peru.jpg', 1.40, 50, 2, '', 2, 8),
+(71, 'Ajinomen', 'https://chely.pe/wp-content/uploads/2019/03/frontal-3623.jpg', 1.40, 50, 2, '', 7, 9),
+(72, 'Anís Herbi', 'https://wongfood.vteximg.com.br/arquivos/ids/258823-750-750/32131-1.jpg?v=636784330415370000', 2.50, 50, 2, '', 8, 14),
+(73, 'Atun Campomar', 'https://plazavea.vteximg.com.br/arquivos/ids/244931-1000-1000/20145074.jpg?v=637052316005530000', 6.50, 50, 2, '', 9, 4),
+(74, 'Kafe Kirma', 'https://plazavea.vteximg.com.br/arquivos/ids/319779-450-450/20110224.jpg?v=637244679292130000', 18.00, 50, 2, '', 10, 14),
+(75, 'Cancha Serrana', 'https://www.tienda-peruana.com/1222-tm_home_default/maiz-cancha-serrana-el-plebeyo-500g.jpg', 8.00, 50, 1, '', 2, 4),
+(76, 'Sobre Colapiz', 'https://www.julcap.com/images/colapiz/colapiz.jpg', 2.00, 50, 2, '', 2, 13),
+(77, 'Sobre Comino', 'https://i2.wp.com/www.comprame.pe/wp-content/uploads/2020/06/Comino-SIBARITA-Sobre-4.05g.png?fit=1152%2C720&ssl=1', 1.00, 50, 2, '', 2, 8),
+(78, 'Doña Gusta Pescado', 'https://d20f60vzbd93dl.cloudfront.net/uploads/tienda_003842/tienda_003842_437e5c887bc470420610fa015cccaf5a049588ca_producto_large.jpg', 1.00, 50, 2, '', 11, 8),
+(79, 'Doña Gusta Carne', 'https://dojiw2m9tvv09.cloudfront.net/23194/product/X_15414507884250230.png?57', 1.00, 50, 2, '', 11, 8),
+(80, 'Doña Gusta Gallina', 'https://swissbrothers.com/799-home_default/dona-gusta-caldo-sabor-a-gallina-en-polvo-7g.jpg', 1.00, 50, 2, '', 11, 8),
+(81, 'Harina Bells', 'https://vivanda.vteximg.com.br/arquivos/ids/164540-1000-1000/22005.jpg?v=636137784434370000', 5.00, 50, 2, '', 12, 13),
+(82, 'Harina sin preparar', 'https://vivanda.vteximg.com.br/arquivos/ids/161032-1000-1000/10443.jpg?v=636137716623600000', 5.00, 50, 1, '', 2, 13),
+(83, 'Leche Condensada', 'https://vivanda.vteximg.com.br/arquivos/ids/163499-1000-1000/20070084.jpg?v=636137753258370000', 5.50, 50, 2, '', 13, 13),
+(84, 'Bolsa Leche Gloria Light', 'https://plazavea.vteximg.com.br/arquivos/ids/264379-450-450/94974.jpg?v=637086775013370000', 4.50, 50, 1, '', 13, 21),
+(85, 'Tarro Leche Gloria Roja', 'https://cdn.joinnus.com/files/2020/05/PO6So8eTu0JoBSP.jpg', 3.80, 50, 1, '', 13, 21),
+(86, 'Mantequilla Glo', 'https://chely.pe/wp-content/uploads/2020/04/Mantequilla-Gloria-pote-x-400-g.png', 9.50, 50, 2, '', 13, 22),
+(87, 'Mayonesa Alacena', 'https://vivanda.vteximg.com.br/arquivos/ids/179150-618-618/994930.jpg?v=637006398811070000', 13.00, 50, 2, '', 14, 8),
+(88, 'Polvo para Hornear', 'https://www.llevateloya.pe/1060-home_default/polvo-hornear-universal-sobre-x-25-gr.jpg', 1.50, 50, 2, '', 2, 13),
+(89, 'Pomarola Molitalia', 'https://cdn.shopify.com/s/files/1/1534/3917/products/130016SalsaPomarolaMolitaliax160gr.png?v=1587346497', 2.20, 50, 2, '', 15, 10),
+(90, 'Sal', 'https://plazavea.vteximg.com.br/arquivos/ids/197525-1000-1000/20130447.jpg?v=636621785258170000', 1.50, 50, 1, '', 2, 8),
+(91, 'Spaghetti', 'https://www.perushop.com.pe/wp-content/uploads/2020/04/fid.don-vittorio-spag.-1kg-12bol_2.jpg', 3.60, 50, 1, '', 2, 10),
+(92, 'Botellita Sillao', 'https://vivanda.vteximg.com.br/arquivos/ids/169979-618-618/20096654.jpg?v=636142105651270000', 2.20, 50, 2, '', 16, 10),
+(93, 'Vainilla Escencial', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTEyFEGle4iZoqNzvytRh9Ln2aHQShxqUepyQ&usqp=CAU', 2.00, 50, 2, '', 2, 13),
+(94, 'Vino tinto queirolo', 'https://oechsle.vteximg.com.br/arquivos/ids/1348289-1000-1000/image-b06128e953694b91aaacb191e7015d99.jpg?v=637122662403430000', 22.00, 50, 2, '', 17, 28);
+
+
+CREATE TABLE `orden` (
+  `idOrden` int(11) NOT NULL,
+  `idEstado` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `fechaOrden` varchar(60) NOT NULL,
+  `fechaEntrega` varchar(60) NOT NULL,
+  `Comentario` varchar(200) NOT NULL,
+  `Direccion` varchar(100) NOT NULL,
+  `PrecioTotal` decimal(6,2) NOT NULL,
+  `idPago` int(11) NOT NULL,
+  `bDescuento` tinyint(1) NOT NULL,
+  `idConductor` int(11) DEFAULT NULL,
+  `idUbicacion` int(11) NOT NULL,
+  `idVendedor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `detallecarrito` (
+  `idDetalleCarrito` int(11) NOT NULL,
+  `idOrden` int(11) NOT NULL,
+  `idProducto` int(11) NOT NULL,
+  `subTotal` decimal(6,2) NOT NULL,
+  `cantProducto` int(11) NOT NULL,
+  `TNote` varchar(300) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
 
 --
 -- Índices para tablas volcadas
@@ -727,7 +681,3 @@ ALTER TABLE `ubicacion`
 ALTER TABLE `user`
   ADD CONSTRAINT `User_Table_24` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`);
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

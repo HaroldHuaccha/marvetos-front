@@ -47,6 +47,7 @@ import { IngresoProductoComponent } from "./components/ingreso-producto/ingreso-
 import { ServiciosComponent } from "./components/servicios/servicios.component";
 
 import { ReactiveFormsModule } from "@angular/forms";
+import { CrearempleadoComponent } from './components/crearempleado/crearempleado.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { ReactiveFormsModule } from "@angular/forms";
     CovidComponent,
     IngresoProductoComponent,
     ServiciosComponent,
+    CrearempleadoComponent,
   ],
 
   imports: [
